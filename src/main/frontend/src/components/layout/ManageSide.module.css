@@ -1,22 +1,36 @@
 .container{
-  margin: 6px 3px;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
+  border: 1px solid black;
+  padding: 12px;
+  background-color: rgba(211, 211, 211, 0.09);
 }
 
-.products{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.container > div:not(:first-child){
+  margin-top: 20px;
 }
 
-.products > li {
-  
+.container h5{
+  margin-bottom: 8px;
 }
 
-.manager{
+.container ul{
+
+}
+
+.container li{
+  padding: 10px 0px;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  gap: 4px;
+  padding-left: 8px;
+  font-size: 0.9rem;
+}
+
+.icon{
+  color: #a57eff;
+  font-size: 0.9rem;
+}
+
+.container li:hover{
+  background-color: #d3e8fa70;
+  color: #383838;
+  cursor: pointer;
 }

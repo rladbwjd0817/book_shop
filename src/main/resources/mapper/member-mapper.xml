@@ -17,19 +17,19 @@
 
 	</resultMap>
 
-	<select id="">
-		SELECT
-		  FROM
-		 WHERE
-	</select>
+<!--	<select id="">-->
+<!--		SELECT-->
+<!--		  FROM-->
+<!--		 WHERE-->
+<!--	</select>-->
 
-	<insert id="">
+<!--	<insert id="">-->
 <!--		INSERT INTO SHOP_MEMBER(-->
 <!--			-->
 <!--		)VALUES(-->
 <!--		-->
 <!--		)-->
-	</insert>
+<!--	</insert>-->
 
 
 

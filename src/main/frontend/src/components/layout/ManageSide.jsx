@@ -2,64 +2,65 @@ import React from 'react'
 import styles from './ManageSide.module.css'
 import { FaAnglesRight } from "react-icons/fa6";
 import { SlChart, SlGraph, SlHandbag } from "react-icons/sl";
-import { LuChartColumn } from "react-icons/lu";
 import { FcInfo } from "react-icons/fc";
+import { 
+  FaChartColumn, FaSquarePlus, FaCubesStacked, 
+  FaFileArrowUp
+} from "react-icons/fa6";
 
 const ManageSide = () => {
   return (
     <div className={styles.container}>
-      <div className={styles.products}>
-        {/* 상품관리 */}
-        <h3> 
-          상품 관리 
-          <FaAnglesRight style={{fontSize : 17}} />
-        </h3>
+      <div>
+        <h5>상품관리</h5>
         <ul>
           <li>
-            카테고리 관리
-          </li>
-          <li>상품등록</li>
-          <li>
-            
-            상품 재고 관리</li>
-          <li>상품 정보 수정</li>
-        </ul>
-      </div>
-      <div className={styles.manager}>
-        {/* 구매관리 */}
-        <h3>
-          구매 관리
-          <FaAnglesRight style={{fontSize : 17}} />
-        </h3>
-        <ul>
-          <li>
-            <SlHandbag />
-            구매 내역 조회
+            <SlHandbag className={styles.icon}/>
+            <p>카테고리관리</p>
           </li>
           <li>
-            <SlGraph />
-            월별 매출 관리
+            <FaSquarePlus className={styles.icon}/>
+            <p>상품등록</p>
           </li>
           <li>
-            <LuChartColumn />
-            주간 매출 관리
+            <FaCubesStacked className={styles.icon}/>
+            <p>상품재고관리</p>
+          </li>
+          <li>
+            <FaFileArrowUp className={styles.icon}/>
+            <p>상품정보수정</p>
           </li>
         </ul>
       </div>
-      <div className={styles.manager}>
-        {/* 회원관리 */}
-        <h3>
-          회원 관리
-          <FaAnglesRight style={{fontSize : 17}} />
-        </h3>
+
+      <div>
+        <h5>구매관리</h5>
         <ul>
           <li>
-            <FcInfo />
-            회원 정보 조회
+            <SlChart className={styles.icon}/>
+            <p>구매내역조회</p>
           </li>
           <li>
-            <FcInfo />
-            회원 상태 변경
+            <SlGraph className={styles.icon}/>
+            <p>월별매출관리</p>
+          </li>
+          <li>
+            <FaCubesStacked className={styles.icon}/>
+            <p>주간매출관리</p>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>회원관리</h5>
+        <ul>
+          <li>
+            <FcInfo className={styles.icon}/>
+            <p>회원정보조회</p>
+          </li>
+          <li>
+            <FaSquarePlus className={styles.icon}/>
+            <p>회원정보변경</p>
           </li>
         </ul>
       </div>

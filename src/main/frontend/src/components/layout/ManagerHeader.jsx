@@ -6,7 +6,7 @@ const ManagerHeader = () => {
   return (
     <div>
       <div className={styles.container}>
-        <img src="/logo.png" className={styles.logo}/>
+        <img src="/bookshop_logo.png" className={styles.logo}/>
         <ul>
           <li>Login</li>
           <li>Join</li>

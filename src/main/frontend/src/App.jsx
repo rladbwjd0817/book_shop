@@ -8,8 +8,8 @@ function App() {
   return (
     <>
      {/* <BasicLayout /> */}
-     {/* <ManagerLayout /> */}
-     <Join />
+     <ManagerLayout />
+     {/* <Join /> */}
     </>
   )
 }
