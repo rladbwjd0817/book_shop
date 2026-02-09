@@ -23,13 +23,24 @@
 <!--		 WHERE-->
 <!--	</select>-->
 
-<!--	<insert id="">-->
-<!--		INSERT INTO SHOP_MEMBER(-->
-<!--			-->
-<!--		)VALUES(-->
-<!--		-->
-<!--		)-->
-<!--	</insert>-->
+	<!-- 회원가입 쿼리 -->
+	<insert id="join">
+		INSERT INTO SHOP_MEMBER(
+			MEM_EMAIL
+			, MEM_PW
+			, MEM_NAME
+			, MEM_TEL
+			, MEM_ADDR
+			, ADDR_DETAIL
+		) VALUES(
+			#{memEmail}
+			, #{memPw}
+			, #{memName}
+			, #{memTel}
+			, #{memAddr}
+			, #{addrDetail}
+		)
+	</insert>
 
 
 

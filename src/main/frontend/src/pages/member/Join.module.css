@@ -1,100 +1,63 @@
 .container{
-  width: 80%;
-  margin: auto;
+  width: 400px;
+  margin: 0 auto;
+}
+
+.container input{
+  width: 100%;
+}
+
+.container div{
+  margin-bottom: 0.7rem;
+}
+
+.title_div{
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
-  padding: 10px 25%;
 }
 
-.container > h2 {
-  font-size: 2.7rem;
+.title_div > h2{
+  font-size: 2.5rem;
   text-align: center;
-  margin: 15px 0px;
+  margin-bottom: 30px;
 }
 
-
-.email > input{
-  width: 350px;
-  height: 35px;
-  margin-top: 8px;
+.container > div > p{
+  margin-bottom: 0.2rem;
 }
 
-.email > button {
-  margin-left: 5px;
-  border-radius: 4px;
-  width: 70px;
-  height: 35px;
-  border: none;
-  background-color: rgb(227, 207, 250);
-  font-size: 1.0rem;
-  padding: 2px;
-  cursor: pointer;
+.id_div{
+  display: flex;
+  gap: 6px;
 }
 
-.pw > input{
-  width: 430px;
-  height: 35px;
-  margin-top: 8px;
+.id_div > input{
+  width: 70%;
 }
 
-.confirmPw > input{
-  width: 430px;
-  height: 35px;
-  margin-top: 8px;
+.id_div > button{
+  width: 30%;
 }
 
-.name > input{
-  width: 430px;
-  height: 35px;
-  margin-top: 8px;
+.tel_div{
+  display: flex;
+  gap: 6px;
 }
 
-.tel_input{
- display: flex;
- gap: 50px;
- align-items: flex-start;
- 
+.addr_div{
+  display: flex;
+  gap: 6px;
+  margin-bottom: 0.2rem;
 }
 
-.tel_input > input{
-  width: 110px;
-  height: 35px;
-  margin-top: 8px;
+.addr_div > input{
+  width: 70%;
 }
 
-.addr > :nth-child(2){
-  width: 350px;
-  height: 35px;
-  margin: 8px 8px 4px 0px;
+.addr_div > button{
+  width: 30%;
 }
 
-.addr > button {
-  width: 73px;
-  height: 35px;
-  border: none;
-  background-color: rgb(227, 207, 250);
-  border-radius: 4px;
-  font-size: 1.0rem;
-  cursor: pointer;
+.btn_div > button{
+  width: 100%;
 }
-
-.addr > :last-child{
-  width: 430px;
-  height: 35px;
-}
-
-.joinBtn > button{
-  width: 430px;
-  height: 35px;
-  border: none;
-  border-radius: 4px;
-  background-color: rgb(227, 207, 250);
-  font-size: 1.2rem;
-  cursor: pointer;
-  letter-spacing: 5px;
-}
-
-

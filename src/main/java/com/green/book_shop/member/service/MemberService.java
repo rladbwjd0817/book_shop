@@ -1,5 +1,6 @@
 package com.green.book_shop.member.service;
 
+import com.green.book_shop.member.dto.MemberDTO;
 import com.green.book_shop.member.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,10 @@ import org.springframework.stereotype.Service;
 // final : 멤버변수 값 변경 불가
 public class MemberService {
   private final MemberMapper memberMapper;
-
+//  회원가입 기능 실행 메서드
+  public void join(MemberDTO memberDTO){
+    memberMapper.join(memberDTO);
+  }
 
 
 

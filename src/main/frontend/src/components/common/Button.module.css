@@ -1,0 +1,44 @@
+/* 모든 버튼에 공통으로 적용된 디자인 */
+.button{
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  border : none;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+/* 버튼 색상 별 디자인 */
+.purple{
+  background-color: rgb(255, 224, 167);
+}
+
+.purple:hover{
+  background-color: #ffc354;
+}
+
+.green{
+  background-color: #d5fc7b;
+}
+
+.green:hover{
+  background-color: #1e9200;
+}
+
+.gray{
+  background-color: #e7e7e7;
+  color: #5f5f5f;
+}
+
+.gray:hover{
+  background-color: #d4d4d4;
+}
+
+/* 버튼 크기 별 디자인 */
+.small{
+  padding: 0.39rem 1rem;
+}
+
+.medium{
+  padding: 0.6rem 1.8rem;
+}

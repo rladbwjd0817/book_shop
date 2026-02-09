@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './ManagerLayout.module.css'
 import ManagerHeader from './ManagerHeader'
 import ManageSide from './ManageSide'
+import { Outlet } from 'react-router-dom'
 
 
 // 쇼핑몰 운영자가 보는 화면, 매니저 헤더, 매니저 사이드로 3분할
@@ -18,7 +19,7 @@ const ManagerLayout = () => {
         </div>
         <div className={styles.content}>
           {/* 본문내용 */}
-          본문 영역
+          <Outlet />
         </div>
       </div>
     </div>
