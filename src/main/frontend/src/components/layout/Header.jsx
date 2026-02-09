@@ -12,7 +12,9 @@ const Header = () => {
       <div className={styles.top_menu}>
         {/* login, join */}
         <ul>
-          <li>Login</li>
+          <li>
+            <Link to='/login'>Login</Link>
+          </li>
           <li>
             <Link to='/join'>Join</Link>
           </li>

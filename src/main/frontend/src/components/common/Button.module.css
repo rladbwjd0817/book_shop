@@ -18,11 +18,12 @@
 }
 
 .green{
-  background-color: #d5fc7b;
+  background-color: #7ab161;
+  color: white;
 }
 
 .green:hover{
-  background-color: #1e9200;
+  background-color: #2f6e1f;
 }
 
 .gray{

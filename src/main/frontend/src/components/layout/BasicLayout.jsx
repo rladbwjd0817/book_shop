@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './BasicLayout.module.css'
 import Header from './Header'
 import { Outlet } from 'react-router-dom'
+import Button from '../common/Button'
 
 // 일반 회원이 보는 화면의 레이아웃, 상단 헤더만 존재(2분할 화면)
 
