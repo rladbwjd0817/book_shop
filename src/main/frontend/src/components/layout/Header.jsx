@@ -1,18 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Header.module.css'
 import Join from '../../pages/member/Join'
 import { Link, useNavigate } from 'react-router-dom'
 // 일반 사용자가 보는 페이지의 헤더 영역
 
 const Header = () => {
-  // const nav = useNavigate()
+  
+  // 로그인 여부 확인
+  // json 타입으로 가져옴
+  const info = sessionStorage.getItem('loginInfo');
+  console.log('로그인 정보 - ', info)
+  
+  // json 데이터를 객체로 변환
+  const info_obj = JSON.parse(info);
+  console.log(info_obj);
+
+  // login 글자 저장되어 있는 state 변수
+  const [login, setLogin] = useState('Login')
+
+  // login이 되면 login글자가 logout글자로 바꾸는 함수
+  const logout = () => {
+    if(sessionStorage.getItem() !== null){
+      setLogin('Logout');
+    } else{
+      setLogin('Login');
+    }
+  }
+
+
 
   return (
     <div>
       <div className={styles.top_menu}>
         {/* login, join */}
         <ul>
-          <li>Login</li>
+          <li>
+            <Link to='/login'>Login</Link>
+          </li>
+          <li>
+            Logout
+          </li>
           <li>
             <Link to='/join'>Join</Link>
           </li>
@@ -26,7 +53,7 @@ const Header = () => {
           src="/book_banner.PNG"
         />
         <h3 className={styles.banner_title}>
-          BOOK SHOP
+          <Link to= '/'>BOOK SHOP</Link>
         </h3>
       </div>
 

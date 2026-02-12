@@ -1,0 +1,23 @@
+.container{
+  width: 400px;
+  margin: 100px auto;
+}
+
+.container input{
+  width: 100%;
+}
+
+.container :first-child{
+  margin-bottom: 15px;
+}
+
+.container :last-child{
+  display: flex;
+  justify-content: center;
+}
+
+.container :last-child > Button{
+  width: 80%;
+  font-size: 1.0rem;
+  letter-spacing: 0.3rem;
+}

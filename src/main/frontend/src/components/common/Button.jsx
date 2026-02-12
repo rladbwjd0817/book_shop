@@ -5,6 +5,7 @@ const Button = ({
   title = '버튼', 
   variant = 'purple', 
   size = 'small', 
+  disabled = false,
   ...props //구조분해할당 X, 위의 키 값들 빼고 나머지 키 값의 데이터를 다 받음.
 }) => {
   return (
@@ -14,7 +15,10 @@ const Button = ({
       ${styles.button} 
       ${styles[variant]}
       ${styles[size]}
+      ${disabled ? styles.disabled : ''}
     `}
+    
+    disabled={disabled}
     {...props}
     >
       {title}

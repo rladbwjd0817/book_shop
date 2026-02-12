@@ -8,10 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/members")
@@ -33,6 +30,31 @@ public class MemberController {
    }
   }
 
+//  사용가능한 이메일 조회 API(사용가능하면 return true)
+//  url : (GET) localhost:8080/members/checkId/{aaa}
+  @GetMapping("/checkId/{memEmail}")
+  public ResponseEntity<?> checkId(@PathVariable("memEmail") String memEmail){
+    try {
+      boolean result = memberService.isUsableEmail(memEmail);
+      return ResponseEntity.status(HttpStatus.OK).body(result);
+    }catch (Exception e){
+      log.error("중복 아이디 발생", e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
+
+//  로그인 API
+//  url : (GET) localhost:8080/members/login
+  @GetMapping("/login")
+  public ResponseEntity<?> checkLogin(MemberDTO memberDTO){
+    try {
+      MemberDTO result = memberService.login(memberDTO);
+      return ResponseEntity.status(HttpStatus.OK).body(result);
+    }catch (Exception e){
+      log.error("한 사람만 조회하는데 오류 발생!!!!", e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
 
 
 }

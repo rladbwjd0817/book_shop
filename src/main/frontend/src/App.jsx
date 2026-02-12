@@ -5,6 +5,8 @@ import Join from './pages/member/Join'
 import './reset.css'
 import BookList from './pages/book/BookList'
 import Login from './pages/member/Login'
+import BookForm from './pages/book/BookForm'
+import Webstorage from './study/Webstorage'
 
 function App() {
 
@@ -21,7 +23,8 @@ function App() {
 
       {/* 일반회원이 접근하는 페이지들 */}
       <Route  path='/' element= {<BasicLayout />}>
-
+        {/* Web Storage 학습용 컴포넌트 */}
+        <Route path='storage' element={<Webstorage/>}/>
         {/* 도서 목록 페이지, URL : localhost:5173*/}
         <Route path='' element= {<BookList />}/>
       
@@ -34,7 +37,11 @@ function App() {
 
       {/* 홈페이지 운영자(매니저) 권한 회원이 접근하는 페이지들 */}
       <Route path='/manage' element={<ManagerLayout />}>
-        <Route path='join' element={<Join />}/>
+
+        {/* 도서 등록 페이지, URL : localhost:5173/manage/book-form */}
+        {/* URL에서 합성어는 '-' 사용*/}
+        <Route path='book-form' element={ <BookForm /> }/>
+        
       </Route>
 
      </Routes>
