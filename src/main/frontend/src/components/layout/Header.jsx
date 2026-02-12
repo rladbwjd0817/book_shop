@@ -37,9 +37,12 @@ const Header = () => {
           <li>
             <Link to='/login'>Login</Link>
           </li>
+<<<<<<< HEAD
           <li>
             Logout
           </li>
+=======
+>>>>>>> 96ef918e4c24c5d62ba22a8c6e737755664613c5
           <li>
             <Link to='/join'>Join</Link>
           </li>
