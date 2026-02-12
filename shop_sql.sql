@@ -51,12 +51,3 @@ CREATE TABLE SHOP_BOOK(
 
 SELECT * FROM SHOP_BOOK;
 
-
-
-
-
-
-
-
-
-
