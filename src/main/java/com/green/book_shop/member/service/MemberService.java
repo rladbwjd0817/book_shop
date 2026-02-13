@@ -37,6 +37,14 @@ public class MemberService {
     return result;
   }
 
+//  매니저 조회 기능 실행 메서드
+  public MemberDTO selectManager(String memRole){
+//    로그인 하려는 회원의 이메일, 이름, 권한정보를 전달
+//    만약 권한정보가 = manager 이면 로그인 성공/ 아니면 실패
+    MemberDTO resultRole = memberMapper.selectManager(memRole);
+    return resultRole;
+  }
+
 
 
 }

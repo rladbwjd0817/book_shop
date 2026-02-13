@@ -17,4 +17,7 @@ public interface MemberMapper {
 //  로그인 쿼리 실행 메서드
   MemberDTO login (MemberDTO memberDTO);
 
+//  권한이 매니저인 사람 조회 쿼리 실행 메서드
+  MemberDTO selectManager(String memRole);
+
 }

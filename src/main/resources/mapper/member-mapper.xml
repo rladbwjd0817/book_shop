@@ -52,6 +52,17 @@
 		 WHERE MEM_EMAIL = #{memEmail} AND MEM_PW = #{memPw}
 	</select>
 
+	<!--권한이 매니저인 사람 조회-->
+	<select id="selectManager" resultMap="member">
+		SELECT MEM_EMAIL
+			, MEM_NAME
+			, MEM_ROLE
+		  FROM SHOP_MEMBER
+		 WHERE MEM_ROLE = #{memRole}
+	</select>
+
+
+
 
 
 </mapper>

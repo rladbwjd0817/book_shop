@@ -56,5 +56,19 @@ public class MemberController {
     }
   }
 
+//  매니저 로그인 api
+//  url : (GET) localhost:8080/items/manage/login
+  @GetMapping("/manage/login")
+  public ResponseEntity<?> checkManage(String memRole){
+    try {
+      MemberDTO managerResult = memberService.selectManager(memRole);
+      return ResponseEntity.status(HttpStatus.OK).body(memRole);
+    }catch (Exception e){
+      log.error("매니저 로그인 실패!!", e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+
+  }
+
 
 }

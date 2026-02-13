@@ -7,8 +7,11 @@ import styles from './BookForm.module.css'
 import { insertBook } from '../../api/bookApi';
 import Select from '../../components/common/Select';
 import Textarea from '../../components/common/Textarea';
+import { useNavigate } from 'react-router-dom';
 
 const BookForm = () => {
+  const nav = useNavigate();
+
   // 조회한 전체 카테고리 데이터 저장할 state 변수
   const [cateList, setCateList] = useState([]);
 
@@ -16,6 +19,7 @@ const BookForm = () => {
   // useEffct안의 화살표 함수 앞에는 async를 쓸 수 없음!
   useEffect(() => {
     getListData()
+  
   }, []);
 
   // 카테고리 목록 조회 함수
@@ -221,7 +225,10 @@ const BookForm = () => {
         <Button 
           title='도서 등록'
           variant='green'
-          onClick= {e => {regBook()}}
+          onClick= {e => {
+            regBook()
+            // nav('/')
+          }}
         />
       </div>
     </div>

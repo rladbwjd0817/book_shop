@@ -7,7 +7,7 @@ import Button from '../../components/common/Button'
 import { goLogin } from '../../api/memberApi'
 import { useNavigate } from 'react-router-dom'
 
-const Login = () => {
+const Login = ({setLoginInfo, loginInfo}) => {
   // useNavigate로 페이지 이동
   const nav = useNavigate();
 
@@ -25,6 +25,8 @@ const Login = () => {
     }))
   }
 
+  
+
   // 로그인 버튼 클릭 시 실행하게 하는 함수
   const getLogin = async () => {
     const response = await goLogin(info);
@@ -34,7 +36,7 @@ const Login = () => {
       alert('로그인 성공^0^!!!');
 
       // login한 회원의 이메일, 이름, 권한 정보를 가진 변수
-      const info = {
+      const loginInfo = {
         memEmail : response.data.memEmail,
         memName : response.data.memName,
         memRole : response.data.memRole,
@@ -48,10 +50,22 @@ const Login = () => {
       // Session Storage에 로그인한 유저 정보를 저장
       sessionStorage.setItem('loginInfo', JSON.stringify(loginInfo));
       
-      // 도서목록 페이지로 이동
-      nav('/');
+      // app component에서 만든 loginInfo 변수에 로그인 정보를 저장
+      setLoginInfo(loginInfo);
 
-    }else{
+      // 일반 유저 -> 도서목록 페이지로 이동
+      // 매니저 -> 상품 등록 페이지로 이동
+
+      if(loginInfo.memRole === 'USER'){
+        nav('/');
+      }else{
+        nav('/manage/book-form')
+      }
+
+      // nav(loginInfo.memRole === 'USER' ? '/' : '/manage/book-form');
+
+      
+    }  else{
       alert('어이쿠 로그인 실패했네?!!!!');
 
       // 입력 데이터 초기화
@@ -60,10 +74,9 @@ const Login = () => {
         memPw : ''
       })
     }
-    
 
   }
-  
+
   console.log(info);
 
   return (
@@ -101,7 +114,13 @@ const Login = () => {
         <Button 
           title='로그인'
           variant='green'
-          onClick= {e => {getLogin()}}
+          onClick= {e => {
+            if(loginInfo.memRole === 'Manager'){
+              loginManage()
+            }else{
+              getLogin()
+            }
+          }}
         />
       </div>
 

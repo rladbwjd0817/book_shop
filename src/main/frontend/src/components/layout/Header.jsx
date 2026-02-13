@@ -4,8 +4,9 @@ import Join from '../../pages/member/Join'
 import { Link, useNavigate } from 'react-router-dom'
 // 일반 사용자가 보는 페이지의 헤더 영역
 
-const Header = () => {
-  
+const Header = ({setLoginInfo}) => {
+  const nav = useNavigate();
+
   // 로그인 여부 확인
   // json 타입으로 가져옴
   const info = sessionStorage.getItem('loginInfo');
@@ -15,30 +16,39 @@ const Header = () => {
   const info_obj = JSON.parse(info);
   console.log(info_obj);
 
-  // login 글자 저장되어 있는 state 변수
-  const [loginText, setLoginText] = useState('Login')
-
-  // login이 되면 login글자가 logout글자로 바꾸는 함수
-  const logout = () => {
-    const result = sessionStorage.getItem() !== null ? 'Logout' : 'Login'
-  }
-
-
-
   return (
     <div>
       <div className={styles.top_menu}>
         {/* login, join */}
         <ul>
-          <li>
-            <Link to='/login'>{loginText}</Link>
-          </li>
-          <li>
-            Logout
-          </li>
-          <li>
-            <Link to='/join'>Join</Link>
-          </li>
+          {/* 조건 */}
+          {
+            info == null 
+            ?
+            <>
+              <li>
+                <Link to='/login'>Login</Link>
+              </li>
+              <li>
+                <Link to='/join'>Join</Link>
+              </li>
+            </>
+            :
+            <>
+              <li>{info_obj.memEmail}님 반갑습니다.</li>
+              <li>장바구니</li>
+              <li
+                style={{cursor : 'pointer'}}
+                onClick={e => {
+                  sessionStorage.removeItem('loginInfo');
+                  setLoginInfo({});
+                  nav('/');
+                }}
+              >Logout</li>
+            </>
+          }
+
+
         </ul>
       </div>
 
