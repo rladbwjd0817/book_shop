@@ -16,15 +16,11 @@ const Header = () => {
   console.log(info_obj);
 
   // login 글자 저장되어 있는 state 변수
-  const [login, setLogin] = useState('Login')
+  const [loginText, setLoginText] = useState('Login')
 
   // login이 되면 login글자가 logout글자로 바꾸는 함수
   const logout = () => {
-    if(sessionStorage.getItem() !== null){
-      setLogin('Logout');
-    } else{
-      setLogin('Login');
-    }
+    const result = sessionStorage.getItem() !== null ? 'Logout' : 'Login'
   }
 
 
@@ -35,7 +31,7 @@ const Header = () => {
         {/* login, join */}
         <ul>
           <li>
-            <Link to='/login'>Login</Link>
+            <Link to='/login'>{loginText}</Link>
           </li>
           <li>
             Logout
