@@ -114,6 +114,7 @@ const Login = ({setLoginInfo, loginInfo}) => {
         <Button 
           title='로그인'
           variant='green'
+          onKeyDown={e=>{}}
           onClick= {e => {
             if(loginInfo.memRole === 'Manager'){
               loginManage()
