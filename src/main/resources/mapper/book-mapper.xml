@@ -18,14 +18,16 @@
     <!--신상 도서 등록 쿼리-->
     <insert id="insertBook">
         INSERT INTO SHOP_BOOK (
-            BOOK_TITLE
+            BOOK_NUM
+            , BOOK_TITLE
             , BOOK_PRICE
             , AUTHOR
             , BOOK_INTRO
             , PUBLISH_DATE
             , CATE_NUM
         ) VALUES(
-            #{bookTitle}
+            #{bookNum}
+            , #{bookTitle}
             , #{bookPrice}
             , #{author}
             , #{bookIntro}
@@ -53,7 +55,14 @@
          WHERE BOOK_NUM = #{bookNum}
     </select>
 
-	
+    <!--최대 도서 번호 조회-->
+	<select id="getNextBookNum" resultType="int">
+        SELECT IFNULL(MAX(BOOK_NUM), 0) + 1
+        FROM SHOP_BOOK
+    </select>
+
+
+
 </mapper>
 
 

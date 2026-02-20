@@ -128,7 +128,6 @@ const BookForm = () => {
         }
       })
     }
-
   }
 
 
@@ -165,11 +164,22 @@ const BookForm = () => {
     const response = await insertBook(regForm);
     if(response.status == 201){
       alert('등록 성공^0^!!')
+
+      // input태그 내용 초기화
+      setBookData({
+        bookTitle : '',
+        bookPrice : '',
+        author : '',
+        bookIntro : '',
+        publishDate : '',
+        cateNum : '0'
+      })
     }else{
       alert('등록 실패!!')
     }
   }
 
+  console.log('mainImgs - ', mainImg);
   console.log('subImgs - ', subImgs);
 
   return (
