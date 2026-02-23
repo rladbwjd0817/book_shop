@@ -15,7 +15,7 @@ function App() {
   // 로그인 정보를 저장하는 state 변수
   const [loginInfo, setLoginInfo] = useState({});
 
-
+  // 
 
 
   return (
@@ -42,8 +42,8 @@ function App() {
         {/* 로그인 페이지, URL : localhost:5173/login */}
         <Route path='login' element={<Login setLoginInfo={setLoginInfo} loginInfo={loginInfo}/>}/>
 
-        {/* 도서 상세 페이지, URL : localhost:5173/book-detail */}
-        <Route path='detail' element={<BookDetail />}/>
+        {/* 도서 상세 페이지, URL : localhost:5173/detail/3 */}
+        <Route path='detail/:bookNum' element={<BookDetail />}/>
 
 
       </Route>

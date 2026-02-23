@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,5 +19,6 @@ public class BookDTO {
   private String bookIntro;
   private LocalDate publishDate;
   private int cateNum;
+  private List<BookImgDTO> bookImgList; // 도서 이미지를 1개 가져오는 것 , 관계 성립!
 
 }

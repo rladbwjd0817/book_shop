@@ -14,13 +14,19 @@ const EachBook = ({book}) => {
     <div className={styles.container}>
       <div className={styles.img_div}>
         <img 
-          src='/여행 일본어_메인.jpg'
-          
+        
+          src={`http://localhost:8080/upload/${book.bookImgList[0].uproadFileName}`}
+
           style={{
           width : '100%', height : '300px'
           }}
+
+
         />
-        <div className={styles.black_div}></div>
+        <div 
+          className={styles.black_div}
+          onClick={e => {nav(`/detail/${book.bookNum}`)}}
+        ></div>
         <div className={styles.detail_label}>상세정보</div>
       </div>
 

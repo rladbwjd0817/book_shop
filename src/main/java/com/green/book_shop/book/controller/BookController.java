@@ -85,16 +85,16 @@ public class BookController {
     }
   }
 
-//  도서 한 권 조회 api
+//  도서 상세 조회 api
 //  url : (GET) localhost:8080/books/{bookNum}
   @GetMapping("/{bookNum}")
   public ResponseEntity<?> getBookData(@PathVariable("bookNum") int bookNum){
     try {
-      log.info("조회 성공");
-      BookDTO result = bookService.bookData(bookNum);
-      return ResponseEntity.status(HttpStatus.OK).body(bookNum);
+      log.info("상세 도서 조회 성공");
+      BookDTO result = bookService.selectBookDetail(bookNum);
+      return ResponseEntity.status(HttpStatus.OK).body(result);
     }catch (Exception e){
-      log.error("한 권의 도서 조회 중 오류 발생", e);
+      log.error("상세 도서 조회 중 오류 발생", e);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
   }

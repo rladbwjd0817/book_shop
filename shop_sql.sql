@@ -87,5 +87,26 @@ VALUES
 SELECT IFNULL(MAX(BOOK_NUM), 0) + 1 AS 최대글번호
   FROM SHOP_BOOK;
 
+# 도서번호, 도서명, 도서가격, 해당 도서의 첨부된 파일 조회
+#SELECT S.BOOK_NUM, BOOK_TITLE, BOOK_PRICE, UPROAD_FILE_NAME
+  #FROM SHOP_BOOK S INNER JOIN BOOK_IMG I
+    #ON S.BOOK_NUM = I.BOOK_NUM
+ #WHERE IS_MAIN = 'Y';
+
+ SELECT S.BOOK_NUM, BOOK_TITLE, BOOK_PRICE, UPROAD_FILE_NAME
+   FROM SHOP_BOOK S, BOOK_IMG I
+  WHERE S.BOOK_NUM = I.BOOK_NUM;
+    AND IS_MAIN = 'Y';
+ 
+ # 도서번호, 도서명, 도서가격, 수량, 총 구매가격, 해당 도서의 첨부된 파일 조회
+# SELECT S.BOOK_NUM
+            , BOOK_TITLE
+            , BOOK_PRICE
+            , BOOK_STOCK
+            , IS_MAIN
+            , UPROAD_FILE_NAME
+  #FROM SHOP_BOOK S, BOOK_IMG I
+  #WHERE S.BOOK_NUM = I.BOOK_NUM
+  	#AND S.BOOK_NUM = 1;
  
 

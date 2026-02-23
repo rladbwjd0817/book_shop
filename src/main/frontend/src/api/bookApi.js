@@ -29,13 +29,13 @@ export const getBookList = async () => {
   }
 }
 
-// 도서 한 권 조회 함수
-export const getBookData = () => {
+// 도서 상세 조회 함수
+export const getBookDetail = async (bookNum) => {
   try{
-    const response = axios.get()
-    return response
+    const response = await axios.get(`http://localhost:8080/books/${bookNum}`);
+    return response;
   }catch(e){
-    alert('도서 조회하는데 오류 떴는디?!')
-    console.log(e)
+    alert('도서 조회하는데 오류 떴는디?!');
+    console.log('상세 조회 api 오류', e);
   }
 }

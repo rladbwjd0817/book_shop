@@ -32,9 +32,9 @@ public class BookService {
     return bookMapper.selectBookList();
   }
 
-//  도서 한 권 조회 기능 실행 메서드
-  public BookDTO bookData(int bookNum){
-    return bookMapper.bookData(bookNum);
+//  도서 상세 조회 기능 실행 메서드
+  public BookDTO selectBookDetail(int bookNum){
+    return bookMapper.selectBookDetail(bookNum);
   }
 
 //  다음에 저장 될 도서 번호 조회 기능 실행 메서드

@@ -1,0 +1,48 @@
+.container{
+  width: 50%;
+  margin: auto;
+}
+
+.originImg{
+  display: flex;
+  gap: 40px;
+}
+
+.info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.detailInfo_div{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 18px;
+}
+
+.detailInfo_div > p:first-child{
+  font-size: 1.6rem;
+}
+
+.btn_div{
+  display: flex;
+  gap: 10px;
+}
+
+.btn_div > :last-child{
+  background-color: rgb(250, 226, 15);
+  color: black;
+  width: 140px;
+}
+
+.btn_div > :last-child:hover{
+  background-color: rgb(255, 204, 37);
+  color: white;
+}
+
+.line_icons{
+  color: gray;
+  font-size: 20px;
+  
+}
