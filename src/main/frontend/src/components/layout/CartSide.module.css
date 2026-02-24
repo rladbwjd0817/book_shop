@@ -1,0 +1,16 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px 20px;
+}
+
+.side_menu > ul{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.side_menu li{
+  font-size: 1.1rem;
+}

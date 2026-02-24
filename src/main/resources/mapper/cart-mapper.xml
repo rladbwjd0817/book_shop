@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
+<mapper namespace="com.green.book_shop.cart.mapper.CartMapper">
+	<resultMap id="cart" type="com.green.book_shop.cart.dto.CartDTO">
+        <id column="CART_NUM" property="cartNum"/>
+        <result column="BOOK_NUM" property="bookNum"/>
+        <result column="CART_CNT" property="cartCnt"/>
+        <result column="MEM_EMAIL" property="memEmail"/>
+        <result column="CART_DATE" property="cartDate"/>
+        <association property="cartBook" resultMap="com.green.book_shop.book.mapper.BookMapper.book"/>
+        <!--<collection property="bookInfoList" resultMap="com.green.book_shop.book.mapper.BookMapper.book"/>-->
+    </resultMap>
+
+    <!--장바구니에 상품 추가-->
+    <insert id="regCartData">
+        INSERT INTO SHOP_CART (
+             BOOK_NUM
+            , CART_CNT
+            , MEM_EMAIL
+        ) VALUES(
+             #{bookNum}
+            , #{cartCnt}
+            , #{memEmail}
+        )
+    </insert>
+
+    <!--cart랑 book이랑 1:1관계-->
+    <!--장바구니 목록 조회 쿼리-->
+    <select id="cartList" resultMap="cart">
+        SELECT B.BOOK_NUM
+            , UPROAD_FILE_NAME
+            , BOOK_TITLE
+            , BOOK_PRICE
+            , CART_CNT
+            , CART_DATE
+            , IS_MAIN
+        FROM SHOP_BOOK B INNER JOIN BOOK_IMG INNER JOIN SHOP_CART C
+        ON B.BOOK_NUM = C.BOOK_NUM
+        WHERE C.MEM_EMAIL = #{memEmail}
+        AND IS_MAIN = 'Y'
+    </select>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

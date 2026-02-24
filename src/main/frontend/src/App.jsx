@@ -9,14 +9,13 @@ import BookForm from './pages/book/BookForm'
 import Webstorage from './study/Webstorage'
 import { useState } from 'react'
 import BookDetail from './pages/book/BookDetail'
+import CartList from './pages/cart/CartList'
+import UserLayout from './components/layout/UserLayout'
 
 function App() {
 
   // 로그인 정보를 저장하는 state 변수
   const [loginInfo, setLoginInfo] = useState({});
-
-  // 
-
 
   return (
     <>
@@ -45,7 +44,14 @@ function App() {
         {/* 도서 상세 페이지, URL : localhost:5173/detail/3 */}
         <Route path='detail/:bookNum' element={<BookDetail />}/>
 
+        
 
+      </Route>
+
+      {/* 로그인한 유저가 접근할 수 있는 페이지들 */}
+      <Route path='/my' element={<UserLayout setLoginInfo={setLoginInfo}/>}>
+        {/* 장바구니 페이지, URL : localhost:5173/my/cart-list/aaa */}
+        <Route path='cart-list/:memEmail' element={<CartList />} />
       </Route>
 
       {/* 홈페이지 운영자(매니저) 권한 회원이 접근하는 페이지들 */}

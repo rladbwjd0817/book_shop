@@ -1,0 +1,47 @@
+package com.green.book_shop.cart.controller;
+
+import com.green.book_shop.cart.dto.CartDTO;
+import com.green.book_shop.cart.service.CartService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/carts")
+@Slf4j
+@RequiredArgsConstructor
+public class CartController {
+  private final CartService cartService;
+
+//  장바구니에 등록 api
+//  url : (POST) localhost:8080/carts
+  @PostMapping("")
+  public ResponseEntity<?> regCartData(@RequestBody CartDTO cartDTO){
+    try {
+      log.info("장바구니에 상품 등록합니다");
+      cartService.regCartData(cartDTO);
+      return ResponseEntity.status(HttpStatus.CREATED).build();
+    }catch (Exception e){
+      log.error("상품 등록 api 오류 발생", e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
+
+//  장바구니 목록 조회 api
+//  url : (GET) localhost:8080/carts
+  @GetMapping("")
+  public ResponseEntity<?> cartList(@RequestParam ("memEmail") String memEmail){
+    try {
+      log.info("장바구니 리스트 조회");
+      List<CartDTO> cartListResult = cartService.cartList(memEmail);
+      return ResponseEntity.status(HttpStatus.OK).body(cartListResult);
+    }catch (Exception e){
+      log.error("장바구니 리스트 조회 중 오류 발생", e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
+}

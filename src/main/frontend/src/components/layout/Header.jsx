@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import styles from './Header.module.css'
 import Join from '../../pages/member/Join'
 import { Link, useNavigate } from 'react-router-dom'
+import { FaShoppingCart } from "react-icons/fa";
+
 // 일반 사용자가 보는 페이지의 헤더 영역
 
 const Header = ({setLoginInfo}) => {
@@ -16,6 +18,11 @@ const Header = ({setLoginInfo}) => {
   const info_obj = JSON.parse(info);
   console.log(info_obj);
 
+  // memEamil만 뽑아서 변수에 저장
+  const logMemEmail = info_obj.memEmail;
+
+  // console.log(logMemEmail);
+
   return (
     <div>
       <div className={styles.top_menu}>
@@ -29,6 +36,7 @@ const Header = ({setLoginInfo}) => {
               <li>
                 <Link to='/login'>Login</Link>
               </li>
+              <li>장바구니</li>
               <li>
                 <Link to='/join'>Join</Link>
               </li>
@@ -36,7 +44,9 @@ const Header = ({setLoginInfo}) => {
             :
             <>
               <li>{info_obj.memEmail}님 반갑습니다.</li>
-              <li>장바구니</li>
+              <li>
+                <Link to={`/my/cart-list/${logMemEmail}`}>My Page</Link>
+              </li>
               <li
                 style={{cursor : 'pointer'}}
                 onClick={e => {

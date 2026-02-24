@@ -1,20 +1,17 @@
 import React from 'react'
 import styles from './ManagerLayout.module.css'
-import ManagerHeader from './ManagerHeader'
-import ManageSide from './ManageSide'
+import Header from './Header'
+import UserSide from './UserSide'
 import { Outlet } from 'react-router-dom'
 
-
-// 쇼핑몰 운영자가 보는 화면, 매니저 헤더, 매니저 사이드로 3분할
-
-const ManagerLayout = ({setLoginInfo}) => {
+const UserLayout = ({setLoginInfo}) => {
   return (
     <div className={styles.container}>
-      <ManagerHeader setLoginInfo={setLoginInfo}/>
+      <Header setLoginInfo={setLoginInfo}/>
       <div className={styles.main}>
         <div className={styles.side}>
           {/* 사이드메뉴 */}
-          <ManageSide />
+          <UserSide />
         </div>
         <div className={styles.content}>
           {/* 본문내용 */}
@@ -25,4 +22,4 @@ const ManagerLayout = ({setLoginInfo}) => {
   )
 }
 
-export default ManagerLayout
+export default UserLayout
