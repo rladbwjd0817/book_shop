@@ -13,12 +13,32 @@ export const regCart = async (regData) => {
 }
 
 // 장바구니 목록 조회 api
-export const goCartList = async (logMemEmail) => {
+// export const getCartList = async (logMemEmail) => {
+//   try{
+//     // memEmail을 뽑아서 함수에 저장한 다음 url로 실어보내기
+//     const response = await axios.get('http://localhost:8080/carts', {params : {memEmail : logMemEmail}});
+//     return response;
+//   }catch(e){
+//     console.log('장바구니 목록 조회 하는데 오류가 발생했습니다.', e)
+//   }
+// }
+
+export const getCartList = async (memEmail) => {
   try{
     // memEmail을 뽑아서 함수에 저장한 다음 url로 실어보내기
-    const response = await axios.get('http://localhost:8080/carts', {params : {memEmail : logMemEmail}});
+    const response = await axios.get(`http://localhost:8080/carts/${memEmail}`);
     return response;
   }catch(e){
     console.log('장바구니 목록 조회 하는데 오류가 발생했습니다.', e)
+  }
+}
+
+// 삭제 api 요청 
+export const deleteCart = async (cartNum) => {
+  try{
+    const response = await axios.delete(`http://localhost:8080/carts/${cartNum}`);
+    return response;
+  }catch(e){
+    console.log('삭제 중 오류 발생했습니다!', e);
   }
 }

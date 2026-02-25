@@ -13,4 +13,19 @@ public interface CartMapper {
 
 //  장바구니 목록 조회 쿼리 실행 메서드
   List<CartDTO> cartList(String memEmail);
+
+  //중복 상품 확인 + 중복 상품 있으면 update, 없으면 insert 실행 쿼리
+  String isDuplicateBook (CartDTO cartDTO);
+
+//  수량변경 쿼리 실행 메서드
+  void updateCartBook(CartDTO cartDTO);
+
+  // 삭세 쿼리 실행 메서드
+  void deleteCart(int cartNum);
+
+
+
 }
+
+
+

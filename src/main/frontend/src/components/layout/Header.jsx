@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Header.module.css'
 import Join from '../../pages/member/Join'
 import { Link, useNavigate } from 'react-router-dom'
@@ -18,10 +18,11 @@ const Header = ({setLoginInfo}) => {
   const info_obj = JSON.parse(info);
   console.log(info_obj);
 
-  // memEamil만 뽑아서 변수에 저장
-  const logMemEmail = info_obj.memEmail;
-
-  // console.log(logMemEmail);
+  // memEamil만 뽑아서 변수에 저장 -> 로그인 했을 때만 실행
+  // 
+  const logMemEmail = info_obj?.memEmail;
+  console.log(logMemEmail);
+  
 
   return (
     <div>
@@ -45,7 +46,7 @@ const Header = ({setLoginInfo}) => {
             <>
               <li>{info_obj.memEmail}님 반갑습니다.</li>
               <li>
-                <Link to={`/my/cart-list/${logMemEmail}`}>My Page</Link>
+                <Link to='/my/cart-list'>My Page</Link>
               </li>
               <li
                 style={{cursor : 'pointer'}}
@@ -68,7 +69,9 @@ const Header = ({setLoginInfo}) => {
           className={styles.banner_img}
           src="/book_banner.PNG"
         />
-        <h3 className={styles.banner_title}>
+        <h3 
+          className={styles.banner_title}
+        >
           <Link to= '/'>BOOK SHOP</Link>
         </h3>
       </div>

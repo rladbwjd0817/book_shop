@@ -1,0 +1,33 @@
+.list_table{
+  width: 100%;
+  text-align: center;
+}
+
+.list_table td {
+  padding: 0.5rem;
+  vertical-align: middle;
+}
+
+.list_table > thead > tr{
+  border-top: 1px solid rgb(120, 223, 120);
+  border-bottom: 1px solid rgb(120, 223, 120);
+  background-color: rgba(179, 226, 179, 0.7);
+}
+
+.list_table > tbody > tr {
+  border-bottom: 1px solid rgba(200, 200, 200, 0.3);
+}
+
+.list_table > tbody > tr :nth-child(even) {
+  /* background-color: rgba(200, 200, 200, 0.7); */
+}
+
+.list_table > tbody > tr:hover {
+  background-color: rgba(200, 200, 200, 0.1);
+  border-bottom: 1px solid rgba(200, 200, 200, 0.3);
+}
+
+.cnt_td > input{
+  width: 100%;
+  text-align: center;
+}

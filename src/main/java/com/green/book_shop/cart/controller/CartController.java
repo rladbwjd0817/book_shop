@@ -32,15 +32,41 @@ public class CartController {
   }
 
 //  장바구니 목록 조회 api
-//  url : (GET) localhost:8080/carts
-  @GetMapping("")
-  public ResponseEntity<?> cartList(@RequestParam ("memEmail") String memEmail){
+//  url : (GET) localhost:8080/carts/이메일
+//  @GetMapping("")
+//  public ResponseEntity<?> cartList(@RequestParam ("memEmail") String memEmail){
+//    try {
+//      log.info("장바구니 리스트 조회");
+//      List<CartDTO> cartListResult = cartService.cartList(memEmail);
+//      return ResponseEntity.status(HttpStatus.OK).body(cartListResult);
+//    }catch (Exception e){
+//      log.error("장바구니 리스트 조회 중 오류 발생", e);
+//      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//    }
+//  }
+
+  @GetMapping("/{memEmail}")
+  public ResponseEntity<?> cartList(@PathVariable ("memEmail") String memEmail){
     try {
       log.info("장바구니 리스트 조회");
       List<CartDTO> cartListResult = cartService.cartList(memEmail);
       return ResponseEntity.status(HttpStatus.OK).body(cartListResult);
     }catch (Exception e){
       log.error("장바구니 리스트 조회 중 오류 발생", e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
+
+//  삭제 기능 api
+//  url: (DELETE) localhost:8080/carts/3
+  @DeleteMapping("/{cartNum}")
+  public ResponseEntity<?> deleteCart(@PathVariable("cartNum") int cartNum){
+    try {
+      log.info("삭제 기능 실행합니다!");
+      cartService.deleteCart(cartNum);
+      return ResponseEntity.status(HttpStatus.OK).body(cartNum);
+    }catch (Exception e){
+      log.error("삭제 기능 실행 중 오류 발생",e);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
   }

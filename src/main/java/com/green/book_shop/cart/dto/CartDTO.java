@@ -18,8 +18,6 @@ public class CartDTO {
   private String memEmail;
   private LocalDateTime cartDate;
 
-// 장바구니에 추가 할 도서
-  private List<BookDTO> bookInfoList;
 
 //  장바구니에 추가할 도서
   private BookDTO cartBook;

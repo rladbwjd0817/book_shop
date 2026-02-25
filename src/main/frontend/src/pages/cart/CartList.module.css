@@ -1,1 +1,11 @@
 
+.flex_div{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+}
+
+.totalPrice_div{
+  text-align: right;
+}

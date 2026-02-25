@@ -51,7 +51,7 @@ function App() {
       {/* 로그인한 유저가 접근할 수 있는 페이지들 */}
       <Route path='/my' element={<UserLayout setLoginInfo={setLoginInfo}/>}>
         {/* 장바구니 페이지, URL : localhost:5173/my/cart-list/aaa */}
-        <Route path='cart-list/:memEmail' element={<CartList />} />
+        <Route path='cart-list' element={<CartList />} />
       </Route>
 
       {/* 홈페이지 운영자(매니저) 권한 회원이 접근하는 페이지들 */}

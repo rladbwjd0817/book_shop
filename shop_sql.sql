@@ -154,4 +154,23 @@ SELECT B.BOOK_NUM, BOOK_PRICE, CART_CNT, CART_DATE
         ON B.BOOK_NUM = C.BOOK_NUM
         WHERE C.MEM_EMAIL  #{memEmail}
         AND IS_MAIN = 'Y';
-
+    
+    MERGE INTO SHOP_BOOK B
+    USING SHOP_CART C
+       ON B.BOOK_NUM = C.BOOK_NUM
+     WHEN MATCHED THEN
+     	UPDATE SET CART_CNT = + #{cartCnt}
+     WHEN MATCHED THEN
+     	INSERT (BOOK_NUM
+     		, CART_CNT
+     		, MEM_EAMIL) 
+     		VALUES(
+     			#{bookNum}
+     			, #{cartCnt}
+     			, #{memEmail}
+     		);
+    
+    SELECT * FROM SHOP_BOOK 
+    
+    #DELETE FROM SHOP_CART;
+  

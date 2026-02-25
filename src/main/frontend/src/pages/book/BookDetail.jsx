@@ -112,7 +112,7 @@ const BookDetail = () => {
             // })
 
             <img
-              style={{width : 200}} 
+              className={styles.mainImg}
               src={`http://localhost:8080/upload/${bookInfo.bookImgList.filter(e => {return e.isMain === 'Y'})[0].uproadFileName}`}
             />
           }

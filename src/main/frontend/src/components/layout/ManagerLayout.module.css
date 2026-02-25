@@ -1,6 +1,6 @@
 .container{
   width: 1600px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin: 0 auto;
 }
 
@@ -10,11 +10,11 @@
 
 .side{
   width: 15%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .content{
   width: 85%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
