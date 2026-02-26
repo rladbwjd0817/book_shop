@@ -26,6 +26,12 @@ const Login = ({setLoginInfo, loginInfo}) => {
   }
 
   
+  // 검색어 저장할 state변수
+  // const [keyword, setKeyword] = useState('');
+  // // 검색어 호출 함수
+  // const search = () => {
+  //   console.log(keyword)
+  // }
 
   // 로그인 버튼 클릭 시 실행하게 하는 함수
   const getLogin = async () => {
@@ -114,7 +120,10 @@ const Login = ({setLoginInfo, loginInfo}) => {
         <Button 
           title='로그인'
           variant='green'
-          onKeyDown={e=>{}}
+          onKeyDown={e=>{
+            if(e.key === 'Enter'){
+              search()
+            }}}
           onClick= {e => {
             if(loginInfo.memRole === 'Manager'){
               loginManage()

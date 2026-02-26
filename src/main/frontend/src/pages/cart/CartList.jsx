@@ -51,6 +51,8 @@ const CartList = () => {
     }
   }
 
+  
+
 
   // 장바구니 홈페이지 마운트 됐을 때 뜨기
   useEffect(() => {
@@ -101,7 +103,10 @@ const CartList = () => {
                   <tr key={i}>
                     <td>{cartList.length - i}</td>
                     <td>
-                      <input type="checkbox" checked={true} onChange={e => {}}/>
+                      <input 
+                        type="checkbox" 
+                        checked={true} 
+                        onChange={e => {}}/>
                     </td>
                     <td>
                       <div className={styles.flex_div}>
