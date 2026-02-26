@@ -9,14 +9,18 @@
   margin-left: 90px;
 }
 
-.mainImg ::before{
+/* .mainImg ::before{
   perspective: 1000px;
   transition: 0.3s ease;
-}
+} */
 
-.mainImg:hover{
+/* .mainImg:hover{
   width : 200px;
   transform: rotate3d(0, 1, 0.5, -15deg);
+} */
+
+.mainImg{
+  width: 300px;
 }
 
 .info_div{
