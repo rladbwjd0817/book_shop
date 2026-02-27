@@ -42,3 +42,28 @@ export const deleteCart = async (cartNum) => {
     console.log('삭제 중 오류 발생했습니다!', e);
   }
 }
+
+// 장바구니 수량 변경 api 요청
+export const updateCnt = async (cartNum, cartCnt) => {
+  try{
+    const response = await axios.put(`http://localhost:8080/carts/${cartNum}`, {'cartCnt' : cartCnt})
+    return response
+  }catch(e){
+    console.log('장바구니 수량 업데이트 중 오류', e)
+  }
+}
+
+// 체크박스 선택 시 선택 삭제api
+export const delCarts = async (cartNumList) => {
+  try{
+    const response = await axios.delete(
+      'http://localhost:8080/carts/del-carts', 
+      {params : {'cartNumList' : cartNumList}}
+    );
+    return response;
+  }catch(e){
+    alert('선택 삭제 도중 오류가 발생했습니다.')
+    console.log('선택 삭제 시 오류 발생!', e)
+  }
+
+}

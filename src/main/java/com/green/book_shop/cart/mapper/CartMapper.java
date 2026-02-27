@@ -23,8 +23,11 @@ public interface CartMapper {
   // 삭세 쿼리 실행 메서드
   void deleteCart(int cartNum);
 
+// 장바구니 수량 변경 쿼리
+  void updateCartCnt(CartDTO cartDTO);
 
-
+//  선택 장바구니 선택 삭제
+  void deleteCarts(List<Integer> cartNumList);
 }
 
 

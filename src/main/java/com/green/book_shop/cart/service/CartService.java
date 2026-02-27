@@ -39,5 +39,14 @@ public class CartService {
     cartMapper.deleteCart(cartNum);
   }
 
+//  장바구니 수량 변경 기능 실행 메서드
+  public void updateCartCnt(CartDTO cartDTO){
+    cartMapper.updateCartCnt(cartDTO);
+  }
+
+//  체크박스 선택 시 선택 삭제 기능 실행 메서드
+  public void deleteCarts(List<Integer> cartNumList){
+    cartMapper.deleteCarts(cartNumList);
+  }
 
 }

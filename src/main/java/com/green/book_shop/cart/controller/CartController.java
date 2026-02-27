@@ -70,4 +70,39 @@ public class CartController {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
   }
+
+//  수량변경 api
+//  url : (PUT) localhost:8080/carts/2
+  @PutMapping("/{cartNum}")
+  public ResponseEntity<?> updateCartCnt (@PathVariable("cartNum") int cartNum,
+                                          @RequestBody CartDTO cartDTO){
+    try {
+      log.info("장바구니 수량 변경합니다.");
+      cartDTO.setCartNum(cartNum);
+      cartService.updateCartCnt(cartDTO);
+      return ResponseEntity.status(HttpStatus.OK).build();
+    }catch (Exception e){
+      log.error("장바구니 수량 변경 중 오류 발생", e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
+
+//  체크박스 선택 시 선택 삭제 api
+//  url : (DELETE) localhost:8080/del-carts
+  @DeleteMapping("/del-carts")
+  public ResponseEntity<?> delCarts(@RequestParam("cartNumList") List<Integer> cartNumList){
+    try {
+      log.info("선택 삭제되었습니다.");
+      System.out.println(cartNumList);
+      cartService.deleteCarts(cartNumList);
+      return ResponseEntity.status(HttpStatus.OK).build();
+    }catch (Exception e){
+      log.error("장바구니 선택 삭제 중 오류 발생", e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
+
+
+
+
 }

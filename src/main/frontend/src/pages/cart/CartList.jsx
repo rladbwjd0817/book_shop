@@ -3,7 +3,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import UserSide from '../../components/layout/UserSide';
 import styles from './CartList.module.css';
 import { useParams } from 'react-router-dom';
-import { deleteCart, getCartList } from '../../api/cartApi';
+import { delCarts, deleteCart, getCartList, updateCnt } from '../../api/cartApi';
 import Button from '../../components/common/Button';
 import ListTable from '../../components/common/ListTable';
 import dayjs from 'dayjs';
@@ -33,6 +33,7 @@ const CartList = () => {
 
   // 전체 체크박스 체크여부 데이터를 저장할 state 변수
   const [isChecked, setIsChecked] = useState(true);
+
   
   // 장바구니 목록 조회 실행할 함수
   const getList = async () => {
@@ -65,7 +66,7 @@ const CartList = () => {
       getList();
     }
   }
-
+  
   // 체크박스 컨트롤 함수
   const handleCartNumList = (e) => {
     // 체크가 됐을 때
@@ -98,6 +99,28 @@ const CartList = () => {
     }
     setTotalPrice(sum);
   }, [cartNumList])
+
+  // 장바구니 수량 변경 함수
+  const updateCartCnt = async (cartNum, cartCnt) => {
+    // 입력한 수량(cartCnt)가 숫자인지 확인
+    await updateCnt(cartNum, cartCnt);
+    getList();
+  }
+
+  // 장바구니 선택 삭제
+  const removeCarts = async () => {
+    // 정말 삭제할지 물어봄
+    const result = confirm("진짜로 삭제하시겠습니까-0-??")
+    if(!result) return;
+    
+    if(cartNumList.length === 0){
+      alert("삭제할 도서가 선택되지 않았습니다.");
+      return;
+    }
+    
+    await delCarts(cartNumList);
+    getList();
+  }
 
   return (
     <div className={styles.container}>
@@ -175,8 +198,11 @@ const CartList = () => {
                     <td>{cart.cartBook.bookPrice.toLocaleString()}</td>
                     <td className={styles.cnt_td}>
                       <Input 
+                        type='number'
                         value={cart.cartCnt}
-                        onChange={e => {}}
+                        onChange={e => 
+                          updateCartCnt(cart.cartNum, e.target.value)
+                        }
                       />
                     </td>
                     <td>{(cart.cartCnt * cart.cartBook.bookPrice).toLocaleString()}</td>
@@ -198,7 +224,15 @@ const CartList = () => {
       <div className={styles.totalPrice_div}>
         <p>총 구매 가격 : {totalPrice.toLocaleString()}원</p>
       </div>
-      <div></div>
+      <div>
+        <Button 
+          title='선택 삭제'
+          onClick={e => {removeCarts()}}
+        />
+        <Button 
+          title='선택 구매'
+        />
+      </div>
       
     </div>
   )
