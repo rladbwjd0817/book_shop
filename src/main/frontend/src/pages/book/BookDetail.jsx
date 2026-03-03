@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import EachBook from '../../components/book/EachBook'
-import { getBookDetail } from '../../api/bookApi';
+import { getBookDetail, insertBuy } from '../../api/bookApi';
 import { useNavigate, useParams } from 'react-router-dom';
 import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
@@ -18,7 +18,7 @@ const BookDetail = () => {
   // 조회한 도서 상세 정보를 저장할 state 변수
   const [bookInfo, setBookInfo] = useState({});
 
-  console.log(bookInfo);
+  console.log('bookInfo -', bookInfo);
 
   // 수량과 총가격을 저장할 state 변수
   const [cntAndPrice, setCntAndPrice] = useState({
@@ -97,6 +97,29 @@ const BookDetail = () => {
     })
   }
 
+  // 바로 구매 상품 클릭 시 실행함수
+  const regBuy = async () => {
+    // 로그인 할 회원의 이메일
+    const memEmail = JSON.parse(sessionStorage.getItem('loginInfo')).memEmail;
+
+    
+    // 자바로 가져갈 데이터
+    const data = {
+      buyPrice : cntAndPrice.price,
+      memEmail : memEmail,
+      detailList : [
+        {
+          bookNum : bookInfo.bookNum,
+          buyCnt : cntAndPrice.cnt
+        }
+      ]
+    }
+
+    console.log(data);
+    insertBuy(data);
+
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.originImg}>
@@ -139,6 +162,7 @@ const BookDetail = () => {
             <Button 
               title='바로 구매'
               variant='green'
+              onClick={e => {regBuy()}}
             />
           </div>
         </div>

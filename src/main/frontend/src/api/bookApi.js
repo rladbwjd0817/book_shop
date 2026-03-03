@@ -39,3 +39,13 @@ export const getBookDetail = async (bookNum) => {
     console.log('상세 조회 api 오류', e);
   }
 }
+
+// 바로 상품 구매 api
+export const insertBuy = async (data) => {
+  try{
+    const response = await axios.post('http://localhost:8080/buys', data);
+    return response;
+  }catch(e){
+    console.log('바로 구매 api 실행 중 오류 발생', e);
+  }
+}
