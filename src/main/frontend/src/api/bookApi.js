@@ -49,3 +49,12 @@ export const insertBuy = async (data) => {
     console.log('바로 구매 api 실행 중 오류 발생', e);
   }
 }
+
+// 장바구니에서 구매한 도서 삭제 api
+export const cartDelBooks = async () => {
+  try{
+
+  }catch(e){
+    console.log('장바구니에서 구매한 도서 삭제 api 실행 중 오류 발생', e)
+  }
+}

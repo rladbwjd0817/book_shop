@@ -74,6 +74,7 @@
             , CART_CNT
             , CART_DATE
             , IS_MAIN
+            , B.BOOK_NUM
         FROM SHOP_CART C INNER JOIN SHOP_BOOK B
         ON B.BOOK_NUM = C.BOOK_NUM
         INNER JOIN BOOK_IMG I
@@ -105,7 +106,6 @@
         SET CART_CNT = #{cartCnt}
         WHERE CART_NUM = #{cartNum}
     </update>
-
 
 </mapper>
 

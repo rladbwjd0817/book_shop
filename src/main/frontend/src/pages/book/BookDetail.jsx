@@ -116,8 +116,12 @@ const BookDetail = () => {
     }
 
     console.log(data);
-    insertBuy(data);
-
+    await insertBuy(data);
+    const result = confirm('구매완료^0^!!\n구매 목록 페이지로 이동할까요?')
+    if(result){
+      // 구매 목록 페이지로 이동
+      // nav('/')
+    }
   }
 
   return (

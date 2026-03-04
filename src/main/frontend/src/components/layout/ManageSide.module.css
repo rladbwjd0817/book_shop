@@ -34,3 +34,7 @@
 .mypage_sidemenu p{
   font-size: 1.2rem;
 }
+
+.active{
+  font-weight: bolder;
+}

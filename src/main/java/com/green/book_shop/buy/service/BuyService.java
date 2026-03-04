@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BuyService {
@@ -25,4 +27,12 @@ public class BuyService {
 //    BUY_DETAIL INSERT
     buyMapper.insertBuyDetail(buyDTO);
   }
+
+//  구매 목록 조회 기능 실행 메서드
+  public List<BuyDTO> selectBuyList(String memEmail){
+    return buyMapper.selectBuyList(memEmail);
+  }
+
+
+
 }

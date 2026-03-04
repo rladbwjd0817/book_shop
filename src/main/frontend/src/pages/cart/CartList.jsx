@@ -8,6 +8,7 @@ import Button from '../../components/common/Button';
 import ListTable from '../../components/common/ListTable';
 import dayjs from 'dayjs';
 import Input from '../../components/common/Input';
+import { insertBuy } from '../../api/bookApi';
 
 // 장바구니 목록 페이지
 const CartList = () => {
@@ -122,6 +123,62 @@ const CartList = () => {
     getList();
   }
 
+  // 선택 도서 구매 - disabled사용가능할 것 같은데?
+  const regBuys = async () => {
+    const loginInfo = sessionStorage.getItem('loginInfo')
+    const loginInfo_obj = JSON.parse(loginInfo);
+    // 로그인 여부 확인
+    if(loginInfo === null){
+      alert('로그인 필수입니다!');
+      return;
+    }
+    // 장바구니에서 상품을 하나라도 선택했는지 확인
+    if(cartNumList.length === 0){
+      alert('장바구니에 선택된 상품이 없습니다');
+      return;
+    }
+
+    // 아래 data 변수의 detailList 키에 들어갈 데이터 생성
+    const detailList = []
+
+    // 체크한 도서 수만큼 (cartNumList) 반복
+    for(let i = 0; i < cartNumList.length; i++){
+      const detailData = {
+        bookNum : cartList.filter(e => e.cartNum === cartNumList[i]).map(e => e.bookNum)[0],
+        buyCnt : cartList.filter(e => e.cartNum === cartNumList[i]).map(e => e.cartCnt)[0]
+      };
+
+      detailList.push(detailData);
+    }
+
+    // 자바로 가져갈 데이터
+    const data = {
+      buyPrice : totalPrice,
+      memEmail : loginInfo_obj.memEmail,
+      detailList : detailList
+    }
+
+    console.log(data);
+    console.log('자바로 가져갈 데이터 - ', data);
+
+    // SHOP_BUY, BUY_DETAIL 테이블에 데이터 INSERT
+    await insertBuy(data);    
+
+    alert(`선택하신 ${cartNumList.length}개의 상품을 구매했습니다!`)
+
+    // 장바구니에서 구매한 도서는 삭제
+    await delCarts(cartNumList);
+
+    // 화면 리렌더링을 위해 장바구니 목록 조회
+    await getList();
+
+
+  }
+  
+  console.log('cartNumList -' , cartNumList)
+  console.log('cartList -' , cartList)
+
+
   return (
     <div className={styles.container}>
       <div>
@@ -231,6 +288,7 @@ const CartList = () => {
         />
         <Button 
           title='선택 구매'
+          onClick={e => {regBuys()}}
         />
       </div>
       

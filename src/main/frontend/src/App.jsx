@@ -12,6 +12,8 @@ import BookDetail from './pages/book/BookDetail'
 import CartList from './pages/cart/CartList'
 import UserLayout from './components/layout/UserLayout'
 import CheckboxTest from './study/CheckboxTest'
+import BuyList from './pages/buy/BuyList'
+import MyPage from './pages/member/MyPage'
 
 function App() {
 
@@ -59,6 +61,12 @@ function App() {
       <Route path='/my' element={<UserLayout setLoginInfo={setLoginInfo}/>}>
         {/* 장바구니 페이지, URL : localhost:5173/my/cart-list/aaa */}
         <Route path='cart-list' element={<CartList />} />
+
+        {/* 구매 내역 페이지 */}
+        <Route path='buy-list' element={<BuyList />}/>
+
+        {/* 내 정보 수정 페이지 */}
+        <Route path='my-page' element={<MyPage/>} />
       </Route>
 
       {/* 홈페이지 운영자(매니저) 권한 회원이 접근하는 페이지들 */}

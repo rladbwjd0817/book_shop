@@ -28,6 +28,11 @@ public interface CartMapper {
 
 //  선택 장바구니 선택 삭제
   void deleteCarts(List<Integer> cartNumList);
+
+
+
+
+
 }
 
 
