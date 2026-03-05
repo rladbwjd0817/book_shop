@@ -183,7 +183,7 @@ const BookForm = () => {
   console.log('subImgs - ', subImgs);
 
   return (
-    <div>
+    <div className={styles.container}>
       <div>
         {/* 상단 제목 */}
         <h2>도서 등록</h2>
@@ -306,6 +306,7 @@ const BookForm = () => {
         <Button 
           title='도서 등록'
           variant='green'
+          style={{width : '250px', marginTop : '10px'}}
           onClick= {e => {
             regBook()
             // nav('/')

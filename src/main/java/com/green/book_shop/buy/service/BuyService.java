@@ -33,6 +33,10 @@ public class BuyService {
     return buyMapper.selectBuyList(memEmail);
   }
 
+//  오늘의 주문건수 & 매출금액 기능 실행 메서드
+  public BuyDTO todayOrder(){
+    return buyMapper.todayOrder();
+  }
 
 
 }

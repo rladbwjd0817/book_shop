@@ -46,5 +46,19 @@ public class BuyController {
     }
   }
 
+//  오늘의 주문 건수 및 매출금액 조회 api
+//  url : (GET) localhost:8080/buys
+  @GetMapping("/today")
+  public ResponseEntity<?> getTodayOrder(){
+    try {
+      log.info("오늘의 주문 건수 및 매출 금액을 조회합니다.");
+      BuyDTO todayResult = buyService.todayOrder();
+      return ResponseEntity.status(HttpStatus.OK).body(todayResult);
+    }catch (Exception e){
+      log.error("오늘의 주문 건수 및 매출 금액 조회하는데 실패하였습니다.", e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
+
 
 }

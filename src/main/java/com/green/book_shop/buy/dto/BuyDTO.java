@@ -22,6 +22,8 @@ public class BuyDTO {
 //  구매등록 시 넘길 도서 정보가 들어있는 멤버변수
 //  private BookDTO bookDTO;
 
+
+  //  하루에 주문건수는 여러개 -> 1 : N 관계
 //  1(buyDTO) : N 관계
   private List<BuyDetailDTO> detailList;
 }

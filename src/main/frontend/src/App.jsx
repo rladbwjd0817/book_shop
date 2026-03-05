@@ -14,6 +14,7 @@ import UserLayout from './components/layout/UserLayout'
 import CheckboxTest from './study/CheckboxTest'
 import BuyList from './pages/buy/BuyList'
 import MyPage from './pages/member/MyPage'
+import Dashboard from './pages/admin/Dashboard'
 
 function App() {
 
@@ -71,6 +72,9 @@ function App() {
 
       {/* 홈페이지 운영자(매니저) 권한 회원이 접근하는 페이지들 */}
       <Route path='/manage' element={<ManagerLayout setLoginInfo = {setLoginInfo} />}>
+
+        {/* Dashboard 페이지, URL : localhost:5173/manage/home */}
+        <Route path='manage-home' element={<Dashboard />} />
 
         {/* 도서 등록 페이지, URL : localhost:5173/manage/book-form */}
         {/* URL에서 합성어는 '-' 사용*/}

@@ -20,6 +20,7 @@
         <result column="BUY_NUM" property="buyNum" />
 
         <association property="bookDTO" resultMap="com.green.book_shop.book.mapper.BookMapper.book"/>
+
     </resultMap>
 
     <!--구매 등록(SHOP_BUY) 쿼리-->
@@ -74,7 +75,13 @@
         ORDER BY BUY_DATE DESC
     </select>
 
-
+    <!--오늘의 주문 & 매출금액 건수 조회-->
+    <select id="todayOrder" resultMap="buy">
+        SELECT SUM(BUY_NUM)
+            , SUM(BUY_PRICE)
+        FROM  SHOP_BUY
+        WHERE DATE(BUY_DATE) = DATE(SYSDATE())
+    </select>
 
 
 

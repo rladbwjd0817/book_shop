@@ -65,7 +65,7 @@ const Login = ({setLoginInfo, loginInfo}) => {
       if(loginInfo.memRole === 'USER'){
         nav('/');
       }else{
-        nav('/manage/book-form')
+        nav('/manage/manage-home')
       }
 
       // nav(loginInfo.memRole === 'USER' ? '/' : '/manage/book-form');

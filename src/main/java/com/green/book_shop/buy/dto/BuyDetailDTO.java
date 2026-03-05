@@ -17,4 +17,10 @@ public class BuyDetailDTO {
 //  1:1 관계
 //  상세조회에는 책 정보 1개
   private BookDTO bookDTO;
+
+
+
+
+
+
 }
