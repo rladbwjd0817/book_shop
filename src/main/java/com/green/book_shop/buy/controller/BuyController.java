@@ -2,6 +2,7 @@ package com.green.book_shop.buy.controller;
 
 import com.green.book_shop.buy.dto.BuyDTO;
 import com.green.book_shop.buy.dto.BuyDetailDTO;
+import com.green.book_shop.buy.dto.SaleInfoDTO;
 import com.green.book_shop.buy.service.BuyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -52,7 +53,7 @@ public class BuyController {
   public ResponseEntity<?> getTodayOrder(){
     try {
       log.info("오늘의 주문 건수 및 매출 금액을 조회합니다.");
-      BuyDTO todayResult = buyService.todayOrder();
+      List<SaleInfoDTO> todayResult = buyService.selectSaleList();
       return ResponseEntity.status(HttpStatus.OK).body(todayResult);
     }catch (Exception e){
       log.error("오늘의 주문 건수 및 매출 금액 조회하는데 실패하였습니다.", e);

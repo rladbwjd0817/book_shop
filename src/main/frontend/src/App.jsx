@@ -74,7 +74,7 @@ function App() {
       <Route path='/manage' element={<ManagerLayout setLoginInfo = {setLoginInfo} />}>
 
         {/* Dashboard 페이지, URL : localhost:5173/manage/home */}
-        <Route path='manage-home' element={<Dashboard />} />
+        <Route path='home' element={<Dashboard />} />
 
         {/* 도서 등록 페이지, URL : localhost:5173/manage/book-form */}
         {/* URL에서 합성어는 '-' 사용*/}

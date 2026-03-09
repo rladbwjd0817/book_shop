@@ -2,6 +2,7 @@ package com.green.book_shop.buy.service;
 
 import com.green.book_shop.buy.dto.BuyDTO;
 import com.green.book_shop.buy.dto.BuyDetailDTO;
+import com.green.book_shop.buy.dto.SaleInfoDTO;
 import com.green.book_shop.buy.mapper.BuyMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,8 +35,8 @@ public class BuyService {
   }
 
 //  오늘의 주문건수 & 매출금액 기능 실행 메서드
-  public BuyDTO todayOrder(){
-    return buyMapper.todayOrder();
+  public List<SaleInfoDTO> selectSaleList(){
+    return buyMapper.selectSaleList();
   }
 
 

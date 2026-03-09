@@ -54,6 +54,13 @@
 
     </insert>
 
+    <resultMap id="saleInfo" type="com.green.book_shop.buy.dto.SaleInfoDTO">
+        <result column="SALE_CNT_TODAY" property="saleCntToday" />
+        <result column="SALE_CNT_MONTH" property="saleCntMonth" />
+        <result column="SALE_TODAY" property="saleToday" />
+        <result column="SALE_TODAY" property="saleMonth" />
+    </resultMap>
+
     <!--구매 목록 상세 조회-->
     <select id="selectBuyList" resultMap="buy">
         SELECT B.BUY_NUM
@@ -75,12 +82,32 @@
         ORDER BY BUY_DATE DESC
     </select>
 
-    <!--오늘의 주문 & 매출금액 건수 조회-->
-    <select id="todayOrder" resultMap="buy">
-        SELECT SUM(BUY_NUM)
-            , SUM(BUY_PRICE)
-        FROM  SHOP_BUY
-        WHERE DATE(BUY_DATE) = DATE(SYSDATE())
+    <!--오늘, 이달의 주문 건수 & 오늘, 이달의 매출금액 조회-->
+    <select id="selectSaleInfo" resultMap="saleInfo">
+        SELECT
+            (
+            SELECT COUNT(BUY_NUM)
+            FROM  SHOP_BUY
+            WHERE DATE(BUY_DATE) = CURRENT_DATE()
+            ) AS SALE_CNT_TODAY,
+            (
+            SELECT COUNT(BUY_NUM)
+            FROM  SHOP_BUY
+            WHERE DATE(BUY_DATE)
+            BETWEEN CONCAT(TO_CHAR(CURRENT_DATE(), 'YYYY-MM'), '-01')
+            AND CURRENT_DATE()
+            ) AS SALE_CNT_MONTH,(
+            SELECT SUM(BUY_PRICE)
+            FROM SHOP_BUY
+            WHERE DATE(BUY_DATE) = CURRENT_DATE()
+            ) AS SALE_TODAY, (
+            SELECT SUM(BUY_PRICE)
+            FROM SHOP_BUY
+            WHERE DATE(BUY_DATE)
+            BETWEEN CONCAT(TO_CHAR(CURRENT_DATE(), 'YYYY-MM'), '-01')
+            AND CURRENT_DATE()
+            ) AS SALE_MONTH
+
     </select>
 
 
