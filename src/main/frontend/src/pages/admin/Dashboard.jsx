@@ -1,29 +1,66 @@
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import styles from './Dashboard.module.css'
 import ListTable from '../../components/common/ListTable'
 import { IoReceiptOutline } from "react-icons/io5";
 import { BiWon } from "react-icons/bi";
 import { MdOutlineCalendarMonth } from "react-icons/md";
-import { selectToday } from '../../api/buyApi';
+import { saleInfo, selectBookRank, selectBuyRank, selectChartData } from '../../api/buyApi';
 
 
 const Dashboard = () => {
-  // 오늘의 주문건수 및 매출금액을 저장할 state 변수 생성
-  const [todayResult, setTodayResult] = useState({})
+  // 오늘,이달의 주문건수 및 매출금액을 저장할 state 변수 생성 t= saleInfo
+  const [saleResult, setSaleResult] = useState({});
 
-  // 이달의 주문건수 및 매출금액을 저장할 state 변수 생성
+  // 구매랭킹 데이터를 저장할 state 변수 생성 t=topBuyer
+  const [buyRank, setBuyRank] = useState([]);
+
+  // 인기도서 랭킹 데이터를 저장할 state 변수 생성 t=topBook
+  const [bookRank, setBookRank] = useState([]);
+
+  // 차트 데이터를 저장할 state변수 생성 t=saleTen
+  const [chartData, setChartData] = useState([])
 
   // 주문건수 및 매출금액 조회 실행 함수
-  const getTodayResult = async () => {
-    const response = await selectToday();
+  const getSaleResult = async () => {
+    const response = await saleInfo();
     console.log(response.data);
-    setTodayResult(response.data);
+    setSaleResult(response.data);
   }
 
-  console.log('오늘의 주문건수 및 매출금액 - ', todayResult);
+  console.log('오늘, 이달의 주문건수 및 매출금액 - ', saleResult);
+
+  // 구매랭킹 조회 실행 함수
+  const getBuyRank = async () => {
+    const response = await selectBuyRank();
+    console.log(response.data);
+    setBuyRank(response.data);
+  }
+
+  console.log('구매랭킹 -', buyRank);
+
+  // 인기도서 랭킹 조회 실행 함수
+  const getBookRank = async () => {
+    const response = await selectBookRank()
+    console.log(response.data);
+    setBookRank(response.data);
+  }
+  
+  console.log('인기도서랭킹 -', bookRank);
+
+  // 차트조회 실행 함수
+  const getChart = async () => {
+    const response = await selectChartData();
+    console.log(response.data);
+    setChartData(response.data);
+  }
+
+  console.log('차트 데이터 - ', chartData)
 
   // 마운트되면 바로 조회
-  useEffect(() => {getTodayResult()}, [])
+  useEffect(() => {getSaleResult()}, [])
+  useEffect(() => {getBuyRank()}, [])
+  useEffect(() => {getBookRank()}, [])
+  useEffect(() => {getChart()}, [])
 
   return (
     <div className={styles.container}>
@@ -32,33 +69,31 @@ const Dashboard = () => {
         <div className={styles.result}>
           <div>
             <p>
-              <IoReceiptOutline 
-              // style={{paddingRight : '4px', fontSize : '1.5rem'}}
-              />
+              <IoReceiptOutline />
               오늘의 주문건수
             </p>
-            <p>13</p>
+            <p>{saleResult.saleCntToday}</p>
           </div>
           <div>
             <p>
               <MdOutlineCalendarMonth />
               이 달의 주문건수
             </p>
-            <p>50</p>
+            <p>{saleResult.saleCntMonth}</p>
           </div>
           <div>
             <p>
               <BiWon />
               오늘의 매출 금액
             </p>
-            <p>500000</p>
+            <p>{saleResult.saleToday}</p>
           </div>
           <div>
             <p>
               <MdOutlineCalendarMonth />
               이 달의 매출금액
             </p>
-            <p>1,500,000</p>
+            <p>{saleResult.saleMonth}</p>
           </div>
         </div>
       </div>
@@ -80,7 +115,20 @@ const Dashboard = () => {
                 <td>구매 금액</td>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+              {
+                buyRank.map((buyRank, i) => {
+                  return(
+                    <tr key={i}>
+                      <td>{i + 1}</td>
+                      <td>{buyRank.memEmail}</td>
+                      <td>{buyRank.saleCntPerMember}</td>
+                      <td>{buyRank.salePerMember}</td>
+                    </tr>
+                  )
+                })
+              }
+            </tbody>
           </ListTable>
       </div>
       <div>
@@ -89,8 +137,8 @@ const Dashboard = () => {
             <colgroup>
               <col width='15%'/>
               <col width='*'/>
-              <col width='30%'/>
-              <col width='35%'/>
+              <col width='20%'/>
+              <col width='20%'/>
             </colgroup>
             <thead>
               <tr>
@@ -100,7 +148,20 @@ const Dashboard = () => {
                 <td>판매 건수</td>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+              {
+                bookRank.map((bookRank, i)=> {
+                  return(
+                    <tr key={i}>
+                      <td>{i + 1}</td>
+                      <td>{bookRank.bookTitle}</td>
+                      <td>{bookRank.author}</td>
+                      <td>{bookRank.totalCnt}</td>
+                    </tr>
+                  )
+                })
+              }
+            </tbody>
           </ListTable>
       </div>
     </div>

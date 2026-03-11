@@ -1,19 +1,20 @@
 package com.green.book_shop.buy.service;
 
-import com.green.book_shop.buy.dto.BuyDTO;
-import com.green.book_shop.buy.dto.BuyDetailDTO;
-import com.green.book_shop.buy.dto.SaleInfoDTO;
+import com.green.book_shop.buy.dto.*;
 import com.green.book_shop.buy.mapper.BuyMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class BuyService {
   private final BuyMapper buyMapper;
+
 
   //  트랜젝션 : 둘 다 실행할 때 하나만 성공하고 하나는 실패했을 경우엔 둘 다 실패한걸로 간주하도록 하는 것
   //rollbackFor : 그래서 어떤 오류가 발생했을 때 롤백시킬거냐고 묻는거
@@ -35,9 +36,23 @@ public class BuyService {
   }
 
 //  오늘의 주문건수 & 매출금액 기능 실행 메서드
-  public List<SaleInfoDTO> selectSaleList(){
-    return buyMapper.selectSaleList();
+  public Map<String, Integer> selectSaleInfo(){
+    return buyMapper.selectSaleInfo();
   }
 
+//  차트조회 기능 실행 메서드
+  public List<Map<String, Object>> selectSale10(List<Integer> dayList){
+    return buyMapper.selectSale10(dayList);
+  }
+
+//  구매 랭킹 기능 실행 메서드
+  public List<TopBuyerDTO> buyRank(){
+    return buyMapper.buyRank();
+  }
+
+//  인기도서 랭킹 기능 실행 메서드
+  public List<TopBookDTO> bookRank(){
+    return buyMapper.bookRank();
+  }
 
 }

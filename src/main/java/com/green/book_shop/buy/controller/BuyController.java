@@ -1,8 +1,6 @@
 package com.green.book_shop.buy.controller;
 
-import com.green.book_shop.buy.dto.BuyDTO;
-import com.green.book_shop.buy.dto.BuyDetailDTO;
-import com.green.book_shop.buy.dto.SaleInfoDTO;
+import com.green.book_shop.buy.dto.*;
 import com.green.book_shop.buy.service.BuyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/buys")
@@ -47,19 +48,65 @@ public class BuyController {
     }
   }
 
-//  오늘의 주문 건수 및 매출금액 조회 api
-//  url : (GET) localhost:8080/buys
-  @GetMapping("/today")
-  public ResponseEntity<?> getTodayOrder(){
+//  오늘, 이달의 주문 건수 및 매출금액 조회 api
+//  url : (GET) localhost:8080/buys/sale-info
+  @GetMapping("/sale-info")
+  public ResponseEntity<?> selectSaleInfo(){
     try {
       log.info("오늘의 주문 건수 및 매출 금액을 조회합니다.");
-      List<SaleInfoDTO> todayResult = buyService.selectSaleList();
-      return ResponseEntity.status(HttpStatus.OK).body(todayResult);
-    }catch (Exception e){
+      Map<String, Integer> saleInfoMap = buyService.selectSaleInfo();
+      return ResponseEntity.status(HttpStatus.OK).body(saleInfoMap);
+    } catch (Exception e){
       log.error("오늘의 주문 건수 및 매출 금액 조회하는데 실패하였습니다.", e);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
   }
 
+//  차트조회 api
+//  url : (GET) localhost:8080/buys/chart
+  @GetMapping("/chart")
+  public ResponseEntity<?> selectSale10(){
+    try {
+      log.info("차트 조회합니다.");
+//      9~0까지 데이터가 들어있는 리스트
+      List<Integer> dayList = new ArrayList<>();
+      for (int i = 9 ; i > -1 ; i--){
+        dayList.add(i);
+      }
+      List<Map<String, Object>> chartResult = buyService.selectSale10(dayList);
+      return ResponseEntity.status(HttpStatus.OK).body(chartResult);
+    }catch (Exception e){
+      log.error("차트 조회 중 오류 발생", e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
+
+//  구매 랭킹 조회 api
+//  url : (GET) localhost:8080/buys/buy-rank
+  @GetMapping("/buy-rank")
+  public ResponseEntity<?> buyRank(){
+    try {
+      log.info("구매랭킹 top5를 조회합니다.");
+      List<TopBuyerDTO> buyRankResult = buyService.buyRank();
+      return ResponseEntity.status(HttpStatus.OK).body(buyRankResult);
+    }catch (Exception e){
+      log.error("구매랭킹 조회 중 오류 발생",e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
+
+//  인기도서 랭킹 조회 api
+//  url : (GET) localhost:8080/buys/book-rank
+  @GetMapping("/book-rank")
+  public ResponseEntity<?> bookRank(){
+    try {
+      log.info("인기 도서 랭킹 top5를 조회합니다.");
+      List<TopBookDTO> bookRankResult = buyService.bookRank();
+      return ResponseEntity.status(HttpStatus.OK).body(bookRankResult);
+    }catch (Exception e){
+      log.error("인기 도서 랭킹 top5를 조회하는 중 오류 발생",e);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
 
 }
