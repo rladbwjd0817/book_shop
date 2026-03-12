@@ -5,6 +5,8 @@ import { IoReceiptOutline } from "react-icons/io5";
 import { BiWon } from "react-icons/bi";
 import { MdOutlineCalendarMonth } from "react-icons/md";
 import { saleInfo, selectBookRank, selectBuyRank, selectChartData } from '../../api/buyApi';
+import TestBarChart from '../../components/buy/TestBarChart';
+
 
 
 const Dashboard = () => {
@@ -23,7 +25,6 @@ const Dashboard = () => {
   // 주문건수 및 매출금액 조회 실행 함수
   const getSaleResult = async () => {
     const response = await saleInfo();
-    console.log(response.data);
     setSaleResult(response.data);
   }
 
@@ -32,7 +33,6 @@ const Dashboard = () => {
   // 구매랭킹 조회 실행 함수
   const getBuyRank = async () => {
     const response = await selectBuyRank();
-    console.log(response.data);
     setBuyRank(response.data);
   }
 
@@ -41,7 +41,6 @@ const Dashboard = () => {
   // 인기도서 랭킹 조회 실행 함수
   const getBookRank = async () => {
     const response = await selectBookRank()
-    console.log(response.data);
     setBookRank(response.data);
   }
   
@@ -50,17 +49,38 @@ const Dashboard = () => {
   // 차트조회 실행 함수
   const getChart = async () => {
     const response = await selectChartData();
-    console.log(response.data);
     setChartData(response.data);
   }
 
   console.log('차트 데이터 - ', chartData)
+
+  // 모든 데이터를 조회할 데이터
+  // const getAllData = async () => {
+  //   // 한 번에 다수의 api를 조회
+  //   const [response1, response2, response3, response4] = await Promise.all([
+  //     getSaleResult(), 
+  //     getBuyRank(), 
+  //     getBookRank(), 
+  //     getChart()
+  //   ]);
+
+  //   // 조회한 데이터를 변수에 저장
+  //   console.log('1번 데이터', response1.data);
+  //   setSaleResult(response1.data);
+  //   console.log('2번 데이터', response2.data);
+  //   setBuyRank(response2.data);
+  //   console.log('3번 데이터', response3.data);
+  //   setBookRank(response3.data);
+  //   console.log('4번 데이터', response4.data);
+  //   setChartData(response4.data);
+  // }
 
   // 마운트되면 바로 조회
   useEffect(() => {getSaleResult()}, [])
   useEffect(() => {getBuyRank()}, [])
   useEffect(() => {getBookRank()}, [])
   useEffect(() => {getChart()}, [])
+  // useEffect(() => {getAllData()}, [])
 
   return (
     <div className={styles.container}>
@@ -72,32 +92,34 @@ const Dashboard = () => {
               <IoReceiptOutline />
               오늘의 주문건수
             </p>
-            <p>{saleResult.saleCntToday}</p>
+            <p>{saleResult.saleCntToday}건</p>
           </div>
           <div>
             <p>
               <MdOutlineCalendarMonth />
               이 달의 주문건수
             </p>
-            <p>{saleResult.saleCntMonth}</p>
+            <p>{saleResult.saleCntMonth}건</p>
           </div>
           <div>
             <p>
               <BiWon />
               오늘의 매출 금액
             </p>
-            <p>{saleResult.saleToday}</p>
+            <p>{saleResult.saleToday}원</p>
           </div>
           <div>
             <p>
               <MdOutlineCalendarMonth />
               이 달의 매출금액
             </p>
-            <p>{saleResult.saleMonth}</p>
+            <p>{saleResult.saleMonth}원</p>
           </div>
         </div>
       </div>
-      <div>b 차트공간</div>
+      <div>
+        <TestBarChart chartData={chartData} />
+      </div>
       <div className={styles.table_div}>
         <p>TOP 5 구매 랭킹</p>
           <ListTable className={styles.buy_rank}>
